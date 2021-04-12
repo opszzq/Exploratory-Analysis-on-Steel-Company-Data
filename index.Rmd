@@ -1,9 +1,23 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Exploratory Analysis on Steel Company Data"
+author: "Kyungjin Kim"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 # Introduction
+
+The purpose of this project is performing financial analysis on private company data. 
+This project was chosen for personal reason. My grandfather was escaped from communist
+North Korea during Korean civil war, while left all his family on North.
+After settling down in South Korea, he had started his business outskirts of Seoul city.
+While there was ups and downs, luckily business have survived in few decades and grown its size.
+Now my grandfather is 93 years old and he is suffering from bad health condition. 
+As a third generation, I thought it would be meaningful to follow his legacy and visualize company
+data in timely manner and do some financial analysis. To give more explanation, visualization of 
+financial data from consolidated financial statements in 20 years was done firstly. Then, various
+indexes were presented to figure out how company has performed and what is weakness/opportunity. 
+Next, stock data was presented with some indexes.It was also compared with price of imported
+minerals(nickel) to see if there is any association between stock price and mineral price. 
+Company is publicly listed company in Korea stock exchange(KOSPI, code: 032560)
 
