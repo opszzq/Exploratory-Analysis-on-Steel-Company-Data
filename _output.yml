@@ -3,6 +3,6 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Exploratory Analysis on Steel Company Data</a></li>
+        <li><a href="./">Exploratory Analysis on Steel Company Data_test</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
