@@ -1,1 +1,332 @@
 # Results
+
+```{r}
+```
+
+```{r, include=FALSE}
+library(readxl)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(purrr)
+library(scales)
+```
+
+## Yearly Trend in asset, equity and liability
+
+
+```{r}
+##################################################################################################
+
+
+# Total liabilities, Total Asset, Total Equity
+
+finance_data <- financial_sheet %>% filter(English_I %in% c("Total assets","Total liabilities", "Total equity"))
+finance_data <- finance_data[, 2:24]
+
+finance_data <- t(finance_data)
+colnames(finance_data) <-  c("Total_assets","Total_liabilities", "Total_equity")
+finance_data <- data.frame(finance_data)
+finance_data <- finance_data[2:23,]
+rownames(finance_data) <- c(1999:2020)
+finance_data <- map_df(finance_data, rev)
+
+finance_data$Total_assets <- as.numeric(finance_data$Total_assets)
+finance_data$Total_liabilities <- as.numeric(finance_data$Total_liabilities)
+finance_data$Total_equity <- as.numeric(finance_data$Total_equity)
+
+diff <- finance_data[11, ] - finance_data[8, ]
+diff <- diff/3
+
+finance_data[9, ]  = finance_data[8, ] + diff
+finance_data[10, ]  = finance_data[8, ] + diff*2
+rownames(finance_data) <- c(1999:2020)
+year <- data.frame(c(1999:2020))
+f_data <- cbind(finance_data, year)
+rownames(f_data) <- c(1999:2020)
+colnames(f_data) <- c("Total_assets","Total_liabilities", "Total_equity", "year")
+#################################################################################################################################################
+
+# Korean Currency
+ggplot(f_data, aes(x = year)) + geom_line(aes(y = Total_assets, color = "assets"), size = 0.9) +  geom_line(aes(y = Total_liabilities, color = "liabilities"), size = 0.9)+
+  geom_line(aes(y = Total_equity, color = "equities"), size = 0.9) + labs(title = "Trend in company assets, equities and liabilities", x = "year", y = "Korean Currency (won)") +   
+  scale_y_continuous(labels = unit_format(unit = "Billion", scale = 1e-9)) +  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r}
+rownames(finance_data) <- c(1999:2020)
+f <- finance_data[,2:3 ]
+rownames(f) <- c(1999:2020)
+f_data2 <- t(f)
+#################################################################################################################################################
+
+barplot(f_data2, xlab = "year", ylab = "Korean Currency (won)", col = c("red", "green"))
+legend("topleft",
+       c("Equities","Liabilities"),
+       fill = c("green","red")
+)
+```
+
+Firstly, changes in total assets, equities and liabilities from 1999 to 2020 is presented in first figure.
+As observed from above figure, company has performed and managed its risk fairly well since equity has been always larger than liability after
+publicly listed. Equity to liability also expressed in bar graph in second figure. From this bar graph, it can be assumed that leverage of the company has fairly managed. Detailed analysis in leverage is presented in later paragraph.
+
+Note that 1000 Won is roughly equal to 0.9 USD.
+
+
+
+## Yearly Trend in Revenue, Gross Profit and Profit
+
+```{r}
+inc_data <- income_sheet %>% filter(Desc %in% c("Revenue(Sales)","Gross profit", "Operating income(loss)", "Profit (loss)", "Cost of sales"))
+inc_data <- inc_data[, 3:24]
+
+inc_data <- t(inc_data)
+inc_data <- data.frame(inc_data)
+colnames(inc_data) <-  c("Revenue", "salescost", "Gprofit","Oincome", "Profit")
+inc_data <- inc_data[2:22, ]
+inc_data <- map_df(inc_data, rev)
+rownames(inc_data) <- c(2000:2020)
+
+
+inc_data$Revenue <- as.numeric(inc_data$Revenue)
+inc_data$Gprofit <- as.numeric(inc_data$Gprofit)
+inc_data$Oincome <- as.numeric(inc_data$Oincome)
+inc_data$Profit <- as.numeric(inc_data$Profit)
+inc_data$salescost <- as.numeric(inc_data$salescost)
+
+diff <- inc_data[10, ] - inc_data[7, ]
+diff <- diff/3
+
+inc_data[8, ]  = inc_data[7, ] + diff
+inc_data[9, ]  = inc_data[7, ] + diff*2
+
+rownames(inc_data) <- c(2000:2020)
+year <- data.frame(c(2000:2020))
+inc_data <- cbind(inc_data, year)
+colnames(inc_data) <-  c("Revenue", "salescost", "Gprofit","Oincome", "Profit", "year")
+
+ggplot(inc_data, aes(x = year)) + geom_line(aes(y = Revenue, color = "Sales"), size = 0.9) +  geom_line(aes(y = Gprofit, color = "Gross Profit"), size = 0.9) +
+  geom_line(aes(y = salescost, color = "cost of sales"), size = 0.9) + geom_line(aes(y = Profit, color = "Profit"), size = 0.9) +
+  labs(x = "year", y = "Korean Currency (won)") +
+  scale_y_continuous(labels = unit_format(unit = "Billion", scale = 1e-9))
+
+```
+
+Yearly trend in company revenue, gross profit and sales is presented in above figure. It can be observed that from 2003 to 2015, regardless of the sharp growth
+in sales(revenue), gross profit and profit is almost flat and didn't increase much. This is mainly due to increase in cost of sales. As observed in above graph,
+cost of sales has same trend with revenue(sales) and makes profit doesn't necessarily have positive relationship with revenue. 
+
+In manufacturing business, cost of raw material is crucial factor to determine both revenue and profit. Thus, it is important to buy raw material cheaper as possible. It was later interviewed from company manager that company set various strategies to buy raw material in lowest price as possible. However, raw material(especially stainless steel) price varies with various factors, from political matters to geographical difference. For example, anti-dumping law would put additional imported taxes which makes increase in raw material price. Production stop in nickel mine in Indonesia due to increase in spread of COVID-19 has become a factor increasing raw material price as well. 
+
+From 2015 - 2020, revenue and profit has increased. Expansion of business sector to construction business majorly contributed increase in revenue and relative less increase in cost of sales(compared to previous history). Since steal beam is one of fundamental material in construction business, company has been able to obtain price competitiveness.
+
+
+
+
+## Company Revenue based on product proportion
+
+```{r}
+
+Sales = c(107777, 61802, 83540, 5060 )
+s = sum(Sales)
+
+sales2 = c(243572, 12)
+s2 = sum(sales2)
+
+df <- data.frame(
+  category = c("Stainless Steel Product", "PVD/CVD-Colored Steel Product", "Construction", "Other Income"),
+  Sales = c(107777/s, 61802/s, 83540/s, 5060/s )
+)
+
+ggplot(df, aes(x = "", y = Sales, fill = category)) + geom_bar(width = 1, stat = 'identity') +  coord_polar("y") +
+  geom_text(aes(label = paste0(round(Sales*100, 1), "%")), position = position_stack(vjust = 0.5)) + theme_void() + labs(title = "Company revenue in detail - 2020")  +  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+df2 <- data.frame(
+  category = c("Export", "Domestic"),
+  Sales = c(243572/s2, 12/s2)
+)
+
+ggplot(df2, aes(x = "", y = Sales, fill = category)) + geom_bar(width = 1, stat = 'identity') +  coord_polar("y") +
+  geom_text(aes(label = paste0(round(Sales*100, 4), "%")), position = position_stack(vjust = 0.5)) + theme_void()+ labs(title = "Domestic vs Export - 2020")  +  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+```
+
+Above pie chart show company's revenue based on proportion of sales category. Roughly 65 % of company's revenue consists of steel-based product and 32 % consists of construction. It also shows that company doesn't involve in any export business. This is due to high labor cost and less price competency in global market.
+
+
+
+## Profitability Indicator
+
+```{r}
+# ROA, ROE, ROS
+
+
+# ROA, ROE, ROS
+
+t_data = cbind(f_data[2:22, ], inc_data)
+
+coeff = 2 * 10^9
+
+#ROA profit/total asset
+
+t_data <- transform(t_data, ROA = (Profit/Total_assets)*100)
+t_data <- transform(t_data, ROE = (Profit/Total_equity)*100)
+t_data <- transform(t_data, ROS = (Profit/Revenue)*100)
+
+
+
+#ROA
+ggplot(t_data, aes(x = year))  + geom_bar(aes(y = ROA), stat = 'identity', fill = "steelblue") +
+  geom_line(aes(y = (Profit/coeff), color = "Profit"), size = 0.8) + geom_point(aes(y= (Profit/coeff)), color = "red") +
+  scale_y_continuous(name = "ROA (%)", sec.axis = sec_axis(~.*coeff, name = "Korean Currrency(Won)", labels = unit_format(unit = "Billion", scale = 1e-9))) + 
+  labs(title = "Return On Asset") +  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+#ROE
+ggplot(t_data, aes(x = year))  + geom_bar(aes(y = ROE), stat = 'identity', fill = "steelblue") +
+  geom_line(aes(y = (Profit/coeff), color = "Profit"), size = 0.8) + geom_point(aes(y= (Profit/coeff)), color = "red") +
+  scale_y_continuous(name = "ROE (%)", sec.axis = sec_axis(~.*coeff, name = "Korean Currrency(Won)", labels = unit_format(unit = "Billion", scale = 1e-9))) +
+  labs(title = "Return On Equity") +  theme(plot.title = element_text(hjust = 0.5))
+
+
+# Operating Margin
+ggplot(t_data, aes(x = year))  + geom_bar(aes(y = (Oincome/Revenue)*100), stat = 'identity', fill = "steelblue") +
+  geom_line(aes(y = (Oincome/coeff), color = "Operating Income"), size = 0.8) + geom_point(aes(y= (Oincome/coeff)), color = "red") +
+  scale_y_continuous(name = "Operating Margin (%)", sec.axis = sec_axis(~.*coeff, name = "Korean Currrency(Won)", labels = unit_format(unit = "Billion", scale = 1e-9))) +
+  labs(title = "Operating Margin") +  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+#ROS (Profit Margin)
+ggplot(t_data, aes(x = year))  + geom_bar(aes(y = ROS), stat = 'identity', fill = "steelblue") +
+  geom_line(aes(y = (Profit/coeff), color = "Profit"), size = 0.8) + geom_point(aes(y= (Profit/coeff)), color = "red") +
+  scale_y_continuous(name = "ROS (%)", sec.axis = sec_axis(~.*coeff, name = "Korean Currrency(Won)", labels = unit_format(unit = "Billion", scale = 1e-9))) +
+  labs(title = "Profit Margin") +  theme(plot.title = element_text(hjust = 0.5))
+
+
+
+```
+
+Above shows four histograms which indicate company profitability. First one is return on asset(ROA) which is indicator of how profitable the company is relative to its total asset. Second one is return on equity(ROE) which indicates the interest return of the capital supplied by the shareholder. Third one is operating margin, which indicates how company is efficient in its operations and is good at turning sales into profits. Similar to third one, fourth one is return on sales(ROS), which also indicates how company is efficient in its operation and turning sales into profits. Only difference between operating margin and ROS is calculation of operation margin involves operation profit(revenue less operating expenses), while calculation of ROS involves net profit(operation profit less non-operation expenses).
+
+Unlike 2000 to 2010, through 2010 to 2020, company's ROA always has been less than 7.5%. This means company's asset has grown but business has been steady or slightly increase in its net income. Company finds breakthrough after 2015 by adding construction business as a new sector. ROE shows much higher percentage than ROA. This means business is operated in conservative and steady(less debt). From 2010 to 2020, ROS has been varies roughly between 3 % to 12 %. While 3 % is also moderate return on sale considering company's size and characteristic of manufacturing business, 12 % in 2019 is impressive. However, due to nature of construction business, revenue of construction business is heavily rely on project bidding. Thus, it is important to invest in R&D to develop more technology and seek new business area comes with higher profitability.  
+
+
+
+## Debt Repayment Ability Indicator
+
+```{r}
+finance_data1 <- financial_sheet %>% filter(English_I %in% c("Current assets","Inventories", "Current liabilities"))
+finance_data1 <- finance_data1[, 2:24]
+
+finance_data1 <- t(finance_data1)
+colnames(finance_data1) <-  c("Currentassets","Inventories", "Currentliabilities")
+finance_data1 <- data.frame(finance_data1)
+finance_data1 <- finance_data1[2:23,]
+rownames(finance_data1) <- c(1999:2020)
+finance_data1 <- map_df(finance_data1, rev)
+rownames(finance_data1) <- c(1999:2020)
+finance_data1 <- finance_data1[5:22,]
+rownames(finance_data1) <- c(2003:2020)
+colnames(finance_data1) <-  c("Currentassets","Inventories", "Currentliabilities")
+
+finance_data1$Currentassets <- as.numeric(finance_data1$Currentassets)
+finance_data1$Inventories <- as.numeric(finance_data1$Inventories)
+finance_data1$Currentliabilities <- as.numeric(finance_data1$Currentliabilities)
+
+diff <- finance_data1[7, ] - finance_data1[4, ]
+diff <- diff/3
+
+finance_data1[5, ]  = finance_data1[4, ] + diff
+finance_data1[6, ]  = finance_data1[4, ] + diff*2
+rownames(finance_data1) <- c(2003:2020)
+year <- data.frame(c(2003:2020))
+f_data1 <- cbind(finance_data1, year)
+rownames(f_data1) <- c(2003:2020)
+colnames(f_data1) <-  c("Currentassets","Inventories", "Currentliabilities", "year")
+
+
+f_data1 <- transform(f_data1, QR = ((Currentassets-Inventories)/Currentliabilities)*100)
+f_data1 <- transform(f_data1, CR = ((Currentassets)/Currentliabilities)*100)
+
+
+
+ggplot(f_data1, aes(x = year))  + geom_bar(aes(y = CR), stat = 'identity', fill = "coral3") +   
+  labs(title = "Current Ratio", x = "year", y = "Current Ratio (%)") +  theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(f_data1, aes(x = year))  + geom_bar(aes(y = QR), stat = 'identity', fill = "coral3") +   
+  labs(title = "Quick Ratio", x = "year", y = "Quick Ratio (%)") +  theme(plot.title = element_text(hjust = 0.5))
+
+
+# Leverage - debt equity ratio
+
+ggplot(t_data, aes(x = year))  + geom_bar(aes(y = (Total_liabilities/Total_equity)*100), stat = 'identity', fill = "coral3") +   
+  labs(title = "Debt-Equity Ratio", x = "year", y = "Debt-Equity Ratio (%)") +  theme(plot.title = element_text(hjust = 0.5))
+
+
+```
+
+Above shows current-ratio, quick ratio and debt-equity ratio of company.
+Current ratio indicates company's ability to pay short-term obligations within one year.
+Quick ratio is more conservative way to indicate company's ability to pay short-term debts(It doesn't count inventory assets since inventory assets are generally regarded as "hard" to sell). 
+Both current ratio and quick ratio have been managed fairly well, since it have always been higher than 100 % through whole year. 
+Debt-equity ratio also has been kept near 60 %, meaning that company has been operated conservatively and steadily.
+
+
+
+## Stock Price Analysis
+
+```{r}
+colnames(nickel_price) <- c("date", "base_price")
+nickel_price1 <- nickel_price[, 1:2]
+
+nickel_price1$date <- as.integer(gsub(pattern = "-", replacement="", x = nickel_price1$date))
+
+
+ns_data <- merge(hkSteel, nickel_price1, by = "date")
+ns_data <- transform(ns_data, date = as.Date(as.character(date), "%Y%m%d"))
+hkSteel <- transform(hkSteel, date = as.Date(as.character(date), "%Y%m%d"))
+
+hkSteel$date <- as.integer(gsub(pattern = "-", replacement="", x = hkSteel$date))
+HKsteel <- transform(hkSteel, group =  0)
+
+
+ggplot(ns_data, aes(x = date)) + geom_line(aes(y =  high, color = "stock price"), size = 0.6) +  geom_line(aes(y = base_price, color = "nickel price"), size = 0.6)+
+labs(title = "Company stock vs nickel price comparison", x = "year", y = "Korean Currency (won)") +  theme(plot.title = element_text(hjust = 0.5))
+
+HKsteel$date <- as.character(HKsteel$date)
+
+for (row in 1:nrow(HKsteel)){
+  
+  ndate = HKsteel[row, 1]
+  HKsteel[row, 7] = substring(ndate, 1, 4)
+  
+}
+
+HKsteel$group <- as.integer(HKsteel$group)
+HKsteel <- transform(HKsteel, date = as.Date(as.character(date), "%Y%m%d"))
+
+#box plot of stock
+ggplot(HKsteel, aes(x = date, y = high, group = group)) + geom_boxplot(color='darkslategrey',width=0.6, position = "dodge")+
+  labs(title = "Box plot of company stock price (yearly)", x = "year", y = "Korean Currency (won)") +  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+Above shows company stock vs nickel price trend and yearly-based box plot of company stock price. Nowadays nickel price has been a hot potato due to electric car battery, but before then it has been a crucial factor to steel manufacturing company since nickel is most expensive component in stainless steel and played as most important role while determining stainless steel price. 
+It is not perfectly correlated, but in general it can be observed and nickel and company stock price follows similar trend. Stock prices reached its peak from 2008, when nickel price reached to its peak. Furthermore, through 2008 to 2009, company added pipe line factory as its subsidiaries, gave more impact on varying its stock price. However in recent 10 years, company's stock price has not varied much and decrease in its trend. Due to the nature of manufacturing business in Korea, it is steady business but there is not much room to improve its performance. Furthermore, business itself already reached to red ocean and market price of steel-based product is also controlled by monopoly(POSCO). 
+
+
+
+
+
+
+
+
+

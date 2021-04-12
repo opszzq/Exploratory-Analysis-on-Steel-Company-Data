@@ -24,7 +24,7 @@
 <meta name="author" content="Kyungjin Kim" />
 
 
-<meta name="date" content="2021-04-12" />
+<meta name="date" content="2021-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -72,15 +72,27 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="data-sources.html"><a href="data-sources.html#financial-data"><i class="fa fa-check"></i><b>2.0.1</b> Financial Data</a></li>
-<li class="chapter" data-level="2.0.2" data-path="data-sources.html"><a href="data-sources.html#stock-data"><i class="fa fa-check"></i><b>2.0.2</b> Stock Data</a></li>
-<li class="chapter" data-level="2.0.3" data-path="data-sources.html"><a href="data-sources.html#nickel-data"><i class="fa fa-check"></i><b>2.0.3</b> Nickel Data</a></li>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#financial-data"><i class="fa fa-check"></i><b>2.1</b> Financial Data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#stock-data"><i class="fa fa-check"></i><b>2.2</b> Stock Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#nickel-data"><i class="fa fa-check"></i><b>2.3</b> Nickel Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
-<li class="chapter" data-level="3.0.1" data-path="data-transformation.html"><a href="data-transformation.html#handling-missing-data"><i class="fa fa-check"></i><b>3.0.1</b> Handling missing Data</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#financial-data-1"><i class="fa fa-check"></i><b>3.1</b> Financial Data</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#stock-data-1"><i class="fa fa-check"></i><b>3.2</b> Stock Data</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#nickel-data-1"><i class="fa fa-check"></i><b>3.3</b> Nickel Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#handle-missing-values-in-financial-data"><i class="fa fa-check"></i><b>4.1</b> Handle missing values in financial data</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#handle-missing-values-in-mineral-datanickel"><i class="fa fa-check"></i><b>4.2</b> Handle missing values in mineral data(nickel)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#yearly-trend-in-asset-equity-and-liability"><i class="fa fa-check"></i><b>5.1</b> Yearly Trend in asset, equity and liability</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#yearly-trend-in-revenue-gross-profit-and-profit"><i class="fa fa-check"></i><b>5.2</b> Yearly Trend in Revenue, Gross Profit and Profit</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#company-revenue-based-on-product-proportion"><i class="fa fa-check"></i><b>5.3</b> Company Revenue based on product proportion</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#profitability-indicator"><i class="fa fa-check"></i><b>5.4</b> Profitability Indicator</a></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#debt-repayment-ability-indicator"><i class="fa fa-check"></i><b>5.5</b> Debt Repayment Ability Indicator</a></li>
+<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#stock-price-analysis"><i class="fa fa-check"></i><b>5.6</b> Stock Price Analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -104,7 +116,51 @@
             <section class="normal" id="section-">
 <div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="yearly-trend-in-asset-equity-and-liability" class="section level2">
+<h2><span class="header-section-number">5.1</span> Yearly Trend in asset, equity and liability</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Firstly, changes in total assets, equities and liabilities from 1999 to 2020 is presented in first figure.
+As observed from above figure, company has performed and managed its risk fairly well since equity has been always larger than liability after
+publicly listed. Equity to liability also expressed in bar graph in second figure. From this bar graph, it can be assumed that leverage of the company has fairly managed. Detailed analysis in leverage is presented in later paragraph.</p>
+<p>Note that 1000 Won is roughly equal to 0.9 USD.</p>
+</div>
+<div id="yearly-trend-in-revenue-gross-profit-and-profit" class="section level2">
+<h2><span class="header-section-number">5.2</span> Yearly Trend in Revenue, Gross Profit and Profit</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Yearly trend in company revenue, gross profit and sales is presented in above figure. It can be observed that from 2003 to 2015, regardless of the sharp growth
+in sales(revenue), gross profit and profit is almost flat and didn’t increase much. This is mainly due to increase in cost of sales. As observed in above graph,
+cost of sales has same trend with revenue(sales) and makes profit doesn’t necessarily have positive relationship with revenue.</p>
+<p>In manufacturing business, cost of raw material is crucial factor to determine both revenue and profit. Thus, it is important to buy raw material cheaper as possible. It was later interviewed from company manager that company set various strategies to buy raw material in lowest price as possible. However, raw material(especially stainless steel) price varies with various factors, from political matters to geographical difference. For example, anti-dumping law would put additional imported taxes which makes increase in raw material price. Production stop in nickel mine in Indonesia due to increase in spread of COVID-19 has become a factor increasing raw material price as well.</p>
+<p>From 2015 - 2020, revenue and profit has increased. Expansion of business sector to construction business majorly contributed increase in revenue and relative less increase in cost of sales(compared to previous history). Since steal beam is one of fundamental material in construction business, company has been able to obtain price competitiveness.</p>
+</div>
+<div id="company-revenue-based-on-product-proportion" class="section level2">
+<h2><span class="header-section-number">5.3</span> Company Revenue based on product proportion</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p>Above pie chart show company’s revenue based on proportion of sales category. Roughly 65 % of company’s revenue consists of steel-based product and 32 % consists of construction. It also shows that company doesn’t involve in any export business. This is due to high labor cost and less price competency in global market.</p>
+</div>
+<div id="profitability-indicator" class="section level2">
+<h2><span class="header-section-number">5.4</span> Profitability Indicator</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-12-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-12-3.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-12-4.png" width="672" /></p>
+<p>Above shows four histograms which indicate company profitability. First one is return on asset(ROA) which is indicator of how profitable the company is relative to its total asset. Second one is return on equity(ROE) which indicates the interest return of the capital supplied by the shareholder. Third one is operating margin, which indicates how company is efficient in its operations and is good at turning sales into profits. Similar to third one, fourth one is return on sales(ROS), which also indicates how company is efficient in its operation and turning sales into profits. Only difference between operating margin and ROS is calculation of operation margin involves operation profit(revenue less operating expenses), while calculation of ROS involves net profit(operation profit less non-operation expenses).</p>
+<p>Unlike 2000 to 2010, through 2010 to 2020, company’s ROA always has been less than 7.5%. This means company’s asset has grown but business has been steady or slightly increase in its net income. Company finds breakthrough after 2015 by adding construction business as a new sector. ROE shows much higher percentage than ROA. This means business is operated in conservative and steady(less debt). From 2010 to 2020, ROS has been varies roughly between 3 % to 12 %. While 3 % is also moderate return on sale considering company’s size and characteristic of manufacturing business, 12 % in 2019 is impressive. However, due to nature of construction business, revenue of construction business is heavily rely on project bidding. Thus, it is important to invest in R&amp;D to develop more technology and seek new business area comes with higher profitability.</p>
+</div>
+<div id="debt-repayment-ability-indicator" class="section level2">
+<h2><span class="header-section-number">5.5</span> Debt Repayment Ability Indicator</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-13-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+<p>Above shows current-ratio, quick ratio and debt-equity ratio of company.
+Current ratio indicates company’s ability to pay short-term obligations within one year.
+Quick ratio is more conservative way to indicate company’s ability to pay short-term debts(It doesn’t count inventory assets since inventory assets are generally regarded as “hard” to sell).
+Both current ratio and quick ratio have been managed fairly well, since it have always been higher than 100 % through whole year.
+Debt-equity ratio also has been kept near 60 %, meaning that company has been operated conservatively and steadily.</p>
+</div>
+<div id="stock-price-analysis" class="section level2">
+<h2><span class="header-section-number">5.6</span> Stock Price Analysis</h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p>Above shows company stock vs nickel price trend and yearly-based box plot of company stock price. Nowadays nickel price has been a hot potato due to electric car battery, but before then it has been a crucial factor to steel manufacturing company since nickel is most expensive component in stainless steel and played as most important role while determining stainless steel price.
+It is not perfectly correlated, but in general it can be observed and nickel and company stock price follows similar trend. Stock prices reached its peak from 2008, when nickel price reached to its peak. Furthermore, through 2008 to 2009, company added pipe line factory as its subsidiaries, gave more impact on varying its stock price. However in recent 10 years, company’s stock price has not varied much and decrease in its trend. Due to the nature of manufacturing business in Korea, it is steady business but there is not much room to improve its performance. Furthermore, business itself already reached to red ocean and market price of steel-based product is also controlled by monopoly(POSCO).</p>
 
+</div>
 </div>
             </section>
 

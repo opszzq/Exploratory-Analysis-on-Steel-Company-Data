@@ -1,1 +1,25 @@
 # Missing values
+
+
+Since data sources are came from government agency, most of data were in complete 
+form with a little missing data. However, there are no data present before 1999 since
+the company was not listed at that time nor total asset was not reached to the certain level. 
+Also, some of categories(e.g., non-current assets) were not presented in old data(1999 - 2005).
+However, such detailed data were redundant for this project. 
+Below is the process how the missing data were handled in this project.
+
+## Handle missing values in financial data
+While collecting consolidated financial data, it was observed that year 2007
+and 2008 were totally omitted and left as blank. Individual financial statements
+were presented, but it was messy and hard to combine as well. To handle missing data,
+it was simply estimated by the difference between 2006 and 2009 data. 
+For 2007, it was estimated Data2007 = Data2006 +  (Data2009 - Data2006)/3
+For 2008, Data2008 = Data2006 + (Data2009 - Data2006)*(2/3)
+
+## Handle missing values in mineral data(nickel)
+It was also observed that nickel data was collected in timely manner, but some 
+was omitted. In order to plot the nickel vs stock data, inner join was used between
+stock data and nickel data. Since stock data consists of full data without missing one,
+performing inner join would leave data frame same row-length(where date was presented) with
+combined nickel - stock data. 
+

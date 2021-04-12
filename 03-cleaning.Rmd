@@ -1,15 +1,136 @@
 # Data transformation
 
-### Handling missing Data
 
-While collecting consolidated financial data, it was observed that year 2007
-and 2008 were totally omitted and left as blank. Individual financial statements
-were presented, but it was messy and hard to combine as well. To handle missing data,
-it was simply estimated by the difference between 2006 and 2009 data. 
-For 2007, it was estimated Data2007 = Data2006 +  (Data2009 - Data2006)/3
-For 2008, Data2008 = Data2006 + (Data2009 - Data2006)*(2/3)
+## Financial Data
 
-It was also observed that nickel data was collected in timely manner, but some 
-was omitted. In order to plot the nickel vs stock data, inner join was used between
-stock data and nickel data. 
+As briefly explained from part 2, data acquisition of company financial data
+was done by python package. It was saved in xlsx format and can be imported as
+data frame format in R library. Code for the financial data acquisition is represented below. 
+
+
+```{}
+#dart_fss package
+
+import dart_fss as dart
+
+# get api_key to access to database
+
+api_key ='private_api_from_user'
+dart.set_api_key(api_key=api_key)
+
+# reference consolidate financial data
+
+crp_list = dart.get_corp_list()
+hwangkum = crp_list.find_by_corp_code('032560')
+
+# set begin date to collect data from begin date
+
+fs= dart.fs.extract(corp_code = '032560', bgn_de = '19990101')
+
+# save it in local directory
+
+fs.save()
+
+```
+
+
+
+
+## Stock Data
+
+Same as financial data acquisition, stock data were crawled from web through below code
+and saved as csv format. It can be imported as data farme in R as well.
+
+
+KOSPI Index Web Crawling
+
+```{}
+# KOSPI INDEX 
+
+import requests
+import pandas as pd
+import re
+
+# 5593 stands for date from (20000101 to present)
+
+count = '5993'
+url2 = f'https://fchart.stock.naver.com/siseJson.nhn?symbol=KOSPI&requestType=2&count={count}&startTime=20210407&timeframe=day'
+# request data from url
+rs = requests.get(url2)
+
+# data tokenization and remove space
+
+s = rs.text[3:-2]
+s = s.replace(" ", "")
+
+# use regrex module to extract data in "[]"
+
+p = re.compile(r"\[(.+)\]")
+s = p.findall(s)
+
+# split extracted data and store it into list in order
+
+kospi_template = []
+for i in range(1, len(s)):
+    token = s[i]
+    each_token = token.split(',')
+    final_each_token = []
+    for j in range(7):
+        final_each_token.append(each_token[j])
+
+    kospi_template.append(final_each_token)
+
+# data consists of ['date', 'open', 'high', 'low', 'close', 'volume', "foreign"]
+
+kospi_index = pd.DataFrame(kospi_template)
+kospi_index.columns = ['date', 'open', 'high', 'low', 'close', 'volume', "foreign"]
+kospi_index[['open', 'high', 'low', 'close', 'volume']] = kospi_index[['open', 'high', 'low', 'close', 'volume']].applymap(lambda x : float(x))
+
+# export as csv file to local directory
+
+file_name = 'Kospi_index.csv'
+kospi_index.to_csv(file_name, encoding = 'euc-kr', index =False)
+```
+
+
+Company stock data web crawling
+
+```{}
+import requests
+import pandas as pd
+import json
+import xmltodict
+
+# find company stock data from web
+
+stockcode = '032560'
+count = '5993'
+url = f'https://fchart.stock.naver.com/sise.nhn?symbol={stockcode}&timeframe=day&count={count}&requestType=0'
+
+# put into json file for easy data handling
+
+rs = requests.get(url)
+dt = xmltodict.parse(rs.text)
+js = json.dumps(dt, indent=4)
+js = json.loads(js)
+
+# extract data from json file and store it with followed column name
+
+data = pd.json_normalize(js['protocol']['chartdata']['item'])
+df = data['@data'].str.split('|', expand = True)
+df.columns = ['date', 'open', 'high', 'low', 'close', 'volume']
+
+# export to csv file and save in local directory
+
+file_name = 'hkSteel.csv'
+df.to_csv(file_name, encoding = 'euc-kr', index =False)
+```
+
+## Nickel Data
+
+Nickel data can be directly saved from KORES(Korea Resource Corporation) web. 
+Below is the link for the nickel data. 
+
+(https://www.kores.net/komis/price/mineralprice/basemetals/pricetrend/baseMetals.do)
+
 

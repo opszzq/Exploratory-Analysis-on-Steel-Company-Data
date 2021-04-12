@@ -24,7 +24,7 @@
 <meta name="author" content="Kyungjin Kim" />
 
 
-<meta name="date" content="2021-04-12" />
+<meta name="date" content="2021-04-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -72,15 +72,27 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
-<li class="chapter" data-level="2.0.1" data-path="data-sources.html"><a href="data-sources.html#financial-data"><i class="fa fa-check"></i><b>2.0.1</b> Financial Data</a></li>
-<li class="chapter" data-level="2.0.2" data-path="data-sources.html"><a href="data-sources.html#stock-data"><i class="fa fa-check"></i><b>2.0.2</b> Stock Data</a></li>
-<li class="chapter" data-level="2.0.3" data-path="data-sources.html"><a href="data-sources.html#nickel-data"><i class="fa fa-check"></i><b>2.0.3</b> Nickel Data</a></li>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#financial-data"><i class="fa fa-check"></i><b>2.1</b> Financial Data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#stock-data"><i class="fa fa-check"></i><b>2.2</b> Stock Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#nickel-data"><i class="fa fa-check"></i><b>2.3</b> Nickel Data</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
-<li class="chapter" data-level="3.0.1" data-path="data-transformation.html"><a href="data-transformation.html#handling-missing-data"><i class="fa fa-check"></i><b>3.0.1</b> Handling missing Data</a></li>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#financial-data-1"><i class="fa fa-check"></i><b>3.1</b> Financial Data</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#stock-data-1"><i class="fa fa-check"></i><b>3.2</b> Stock Data</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#nickel-data-1"><i class="fa fa-check"></i><b>3.3</b> Nickel Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#handle-missing-values-in-financial-data"><i class="fa fa-check"></i><b>4.1</b> Handle missing values in financial data</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#handle-missing-values-in-mineral-datanickel"><i class="fa fa-check"></i><b>4.2</b> Handle missing values in mineral data(nickel)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#yearly-trend-in-asset-equity-and-liability"><i class="fa fa-check"></i><b>5.1</b> Yearly Trend in asset, equity and liability</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#yearly-trend-in-revenue-gross-profit-and-profit"><i class="fa fa-check"></i><b>5.2</b> Yearly Trend in Revenue, Gross Profit and Profit</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#company-revenue-based-on-product-proportion"><i class="fa fa-check"></i><b>5.3</b> Company Revenue based on product proportion</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#profitability-indicator"><i class="fa fa-check"></i><b>5.4</b> Profitability Indicator</a></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#debt-repayment-ability-indicator"><i class="fa fa-check"></i><b>5.5</b> Debt Repayment Ability Indicator</a></li>
+<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#stock-price-analysis"><i class="fa fa-check"></i><b>5.6</b> Stock Price Analysis</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -104,7 +116,30 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
+<p>Since data sources are came from government agency, most of data were in complete
+form with a little missing data. However, there are no data present before 1999 since
+the company was not listed at that time nor total asset was not reached to the certain level.
+Also, some of categories(e.g., non-current assets) were not presented in old data(1999 - 2005).
+However, such detailed data were redundant for this project.
+Below is the process how the missing data were handled in this project.</p>
+<div id="handle-missing-values-in-financial-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Handle missing values in financial data</h2>
+<p>While collecting consolidated financial data, it was observed that year 2007
+and 2008 were totally omitted and left as blank. Individual financial statements
+were presented, but it was messy and hard to combine as well. To handle missing data,
+it was simply estimated by the difference between 2006 and 2009 data.
+For 2007, it was estimated Data2007 = Data2006 + (Data2009 - Data2006)/3
+For 2008, Data2008 = Data2006 + (Data2009 - Data2006)*(2/3)</p>
+</div>
+<div id="handle-missing-values-in-mineral-datanickel" class="section level2">
+<h2><span class="header-section-number">4.2</span> Handle missing values in mineral data(nickel)</h2>
+<p>It was also observed that nickel data was collected in timely manner, but some
+was omitted. In order to plot the nickel vs stock data, inner join was used between
+stock data and nickel data. Since stock data consists of full data without missing one,
+performing inner join would leave data frame same row-length(where date was presented) with
+combined nickel - stock data.</p>
 
+</div>
 </div>
             </section>
 

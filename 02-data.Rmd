@@ -1,6 +1,6 @@
 # Data sources
 
-### Financial Data
+## Financial Data
 
 Financial data was collected from DART(Data Analysis, Retrieval and Transfer System)
 which is managed by government agency, Financial Supervisory Service. In Korea, 
@@ -9,12 +9,12 @@ are obligated to disclose quarterly and yearly financial information through thi
 In DART, it also provides open API and python package("DART_FSS") for users to collect yearly
 data. Note that web address for DART is  (https://dart.fss.or.kr/)
 
-### Stock Data
+## Stock Data
 
 Stock data was collected from "finance naver" which is largest and one of the most popular
 search engine in Korea. Web address for finance naver is (https://finance.naver.com/)
 
-### Nickel Data
+## Nickel Data
 
 Nickel data can be directly downloaded into csv or xlsx format from KORES, which is government
 agency controlling natural resources(Korea Resoruces Corporation). 

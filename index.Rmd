@@ -14,10 +14,12 @@ After settling down in South Korea, he had started his business outskirts of Seo
 While there was ups and downs, luckily business have survived in few decades and grown its size.
 Now my grandfather is 93 years old and he is suffering from bad health condition. 
 As a third generation, I thought it would be meaningful to follow his legacy and visualize company
-data in timely manner and do some financial analysis. To give more explanation, visualization of 
-financial data from consolidated financial statements in 20 years was done firstly. Then, various
-indexes were presented to figure out how company has performed and what is weakness/opportunity. 
-Next, stock data was presented with some indexes.It was also compared with price of imported
-minerals(nickel) to see if there is any association between stock price and mineral price. 
-Company is publicly listed company in Korea stock exchange(KOSPI, code: 032560)
+data in timely manner and do some financial analysis. 
+To give more explanation, visualization of financial data from consolidated financial statements in 20 years was done firstly. 
+Then, various financial indexes were presented to figure out how company has performed and what is companies' weakness and opportunities. 
+Stock data was presented with some indexes.
+Stock data was also compared with price of imported minerals(nickel) to see if there is any association between stock price and mineral price. 
 
+To give some information about company, company is publicly listed company in Korea stock exchange(KOSPI, code: 032560).
+Company consists of two business domain: one is manufacturing steel product, and the other is construction.
+Link to company website is (http://www.hwangkum.com/)
