@@ -1,0 +1,11 @@
+introduction
+data-sources
+financial-data
+stock-data
+nickel-data
+data-transformation
+handling-missing-data
+missing-values
+results
+interactive-component
+conclusion

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data sources | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 2 Data sources | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 2 Data sources | Exploratory Analysis on Steel Company Data</title>
+  <meta name="description" content="Chapter 2 Data sources | Exploratory Analysis on Steel Company Data" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data sources | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 2 Data sources | Exploratory Analysis on Steel Company Data" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data sources | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 2 Data sources | Exploratory Analysis on Steel Company Data" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Kyungjin Kim" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2021-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="data-transformation.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -68,12 +67,18 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">Exploratory Analysis on Steel Company Data</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="data-sources.html"><a href="data-sources.html#financial-data"><i class="fa fa-check"></i><b>2.0.1</b> Financial Data</a></li>
+<li class="chapter" data-level="2.0.2" data-path="data-sources.html"><a href="data-sources.html#stock-data"><i class="fa fa-check"></i><b>2.0.2</b> Stock Data</a></li>
+<li class="chapter" data-level="2.0.3" data-path="data-sources.html"><a href="data-sources.html#nickel-data"><i class="fa fa-check"></i><b>2.0.3</b> Nickel Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="data-transformation.html"><a href="data-transformation.html#handling-missing-data"><i class="fa fa-check"></i><b>3.0.1</b> Handling missing Data</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
@@ -89,7 +94,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory Analysis on Steel Company Data</a>
           </h1>
         </div>
 
@@ -97,9 +102,29 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-sources" class="section level1" number="2">
+<div id="data-sources" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
+<div id="financial-data" class="section level3">
+<h3><span class="header-section-number">2.0.1</span> Financial Data</h3>
+<p>Financial data was collected from DART(Data Analysis, Retrieval and Transfer System)
+which is managed by government agency, Financial Supervisory Service. In Korea,
+all publicly listed companies and private companies who have certain amount of total asset
+are obligated to disclose quarterly and yearly financial information through this system.
+In DART, it also provides open API and python package(“DART_FSS”) for users to collect yearly
+data. Note that web address for DART is (<a href="https://dart.fss.or.kr/" class="uri">https://dart.fss.or.kr/</a>)</p>
+</div>
+<div id="stock-data" class="section level3">
+<h3><span class="header-section-number">2.0.2</span> Stock Data</h3>
+<p>Stock data was collected from “finance naver” which is largest and one of the most popular
+search engine in Korea. Web address for finance naver is (<a href="https://finance.naver.com/" class="uri">https://finance.naver.com/</a>)</p>
+</div>
+<div id="nickel-data" class="section level3">
+<h3><span class="header-section-number">2.0.3</span> Nickel Data</h3>
+<p>Nickel data can be directly downloaded into csv or xlsx format from KORES, which is government
+agency controlling natural resources(Korea Resoruces Corporation).
+Web address for KORES is (<a href="https://www.kores.net/komis/" class="uri">https://www.kores.net/komis/</a>)</p>
 
+</div>
 </div>
             </section>
 
@@ -138,7 +163,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/02-data.Rmd",
+"link": "https://github.com/opszzq/Exploratory-Analysis-on-Steel-Company-Data/edit/main/02-data.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +171,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/02-data.Rmd",
+"link": "https://github.com/opszzq/Exploratory-Analysis-on-Steel-Company-Data/blob/main/02-data.Rmd",
 "text": null
 },
 "download": null,
